@@ -7,7 +7,6 @@ const FilterBar = () => {
     rating: 4
   })
 
-  console.log(filters)
 
   const handleChengeInput = (e) => {
     const { name, value } = e.target

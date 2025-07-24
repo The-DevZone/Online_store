@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useCartContext } from '../../context/cartContext/CartContext'
+// import { useCartContext } from '../../context/cartContext/CartContext'
 
 import Header from '../../components/header/Header'
 import FilterBar from './filterbar/FilterBar'

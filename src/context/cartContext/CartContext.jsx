@@ -7,7 +7,7 @@ const CartContext = createContext()
 
 const CartContextProvider = ({ children }) => {
 
-  const products = [...Array(20)].map((product) => {
+  const products = [...Array(10)].map((product) => {
     return {
       id: faker.string.uuid(),
       productName: faker.commerce.productName(),
@@ -24,10 +24,15 @@ const CartContextProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(cartReducer, {
     products,
+    cart: [],
   });
 
   return (
-    <CartContext.Provider value={state} >
+    <CartContext.Provider value={{
+      state,
+      dispatch
+    }} 
+    >
       {children}
     </CartContext.Provider>
   )

@@ -17,6 +17,7 @@
 
 
 import React from 'react'
+import CartBody from './CartBody'
 // import { useCartContext } from '../../context/cartContext/CartContext'
 
 const Cart = () => {
@@ -24,13 +25,8 @@ const Cart = () => {
   // console.log("Cart:", products)
 
   return (
-    <div>
-      <h2>Cart Page</h2>
-      {/* <ul>
-        {products.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul> */}
+    <div className=''>
+      <CartBody />
     </div>
   )
 }
