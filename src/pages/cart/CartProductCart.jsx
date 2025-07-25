@@ -4,31 +4,15 @@ import { BsRocketTakeoffFill } from 'react-icons/bs';
 import { CiCirclePlus, CiCircleMinus } from 'react-icons/ci';
 import toast, { Toaster } from 'react-hot-toast';
 
-const CartProductCart = () => {
+const CartProductCart = ({ handleIncreaseCount, quantities, handleDecreaseCount }) => {
     const { state: { cart }, dispatch } = useCartContext();
     console.log(cart)
+    // console.log(cart)
 
     // Store quantity per product using product.id as key
-    const [quantities, setQuantities] = useState({});
 
-    // Handle quantity increase
-    const handleIncreaseCount = (productId) => {
-        setQuantities(prev => ({
-            ...prev,
-            [productId]: (prev[productId] || 1) + 1,
-        }));
-    };
 
-    // Handle quantity decrease
-    const handleDecreaseCount = (productId) => {
-        setQuantities(prev => {
-            const currentQty = prev[productId] || 1;
-            return {
-                ...prev,
-                [productId]: currentQty > 1 ? currentQty - 1 : 1,
-            };
-        });
-    };
+
 
     // Remove item from cart
     const handleCartItemRemove = (product) => {
@@ -71,7 +55,7 @@ const CartProductCart = () => {
                     return (
                         <div key={product.id} className="card w-full max-w-md shadow-sm m-auto bg-gray-950 gap-3 mt-6">
                             {/* Product Image */}
-                            
+
                             <div
                                 onMouseEnter={() => handleMouseEnter(product.id)}
                                 onMouseLeave={handleMouseLeave}
@@ -96,7 +80,7 @@ const CartProductCart = () => {
                                     <img
                                         src={product.image}
                                         alt="zoom"
-                                        className="w-full h-full object-cover scale-250"
+                                        className="w-full h-full object-cover scale-125"
                                         style={{
                                             transformOrigin: `${mousePos.x}px ${mousePos.y}px`,
                                         }}

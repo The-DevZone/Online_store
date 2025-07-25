@@ -7,7 +7,7 @@ import { useCartContext } from '../../../context/cartContext/CartContext';
 const ProductCard = ({ productDetails }) => {
 
     const { state: { cart }, dispatch } = useCartContext()
-    
+
     const handleAddToCart = () => {
         dispatch({
             type: "ADD_TO_CART",

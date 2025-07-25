@@ -1,31 +1,49 @@
-import { useReducer } from 'react';
-
-
-
 export const cartReducer = (state, action) => {
-    if (action.type === "ADD_TO_CART") {
-        state = {
-            ...state,
-            cart: [...state.cart, action.payload]
-        }
-        return state
-    }
+    switch (action.type) {
+        case "ADD_TO_CART":
+            return {
+                ...state,
+                cart: [...state.cart, action.payload]
+            };
 
-    if (action.type === "REMOVE_FROM_CART") {
-        // console.log("remove wala chal raha hu ma ")
-        state = {
-            ...state,
+        case "REMOVE_FROM_CART":
+            return {
+                ...state,
+                cart: state.cart.filter(item => item.id !== action.payload.id)
+            };
+
+        case "INCREASE_QTY":
+            const increaseQty = state.quantities[action.payload] || 1;
+            return {
+                ...state,
+                quantities: {
+                    ...state.quantities,
+                    [action.payload]: increaseQty + 1
+                }
+            };
+
+        case "DECREASE_QUANTITY":
+            const decreaseQty = state.quantities[action.payload] || 1;
+            return {
+                ...state,
+                quantities: {
+                    ...state.quantities,
+                    [action.payload]: decreaseQty > 1 ? decreaseQty - 1 : 1
+                }
+            };
+        case "SUBTOTAL":
+            const subtotal = state.cart.price[action.payload]
             
-            cart: state.cart.filter(item => item.id !== action.payload.id)
-        }
-        return state
-    }
+            return {
+                ...state, 
+                cart: {
+                    ...state.cart,
+                    [action.payload]: subtotal.cart.reduce((acc , curr) => acc + parseFloat(curr.price)  , 0)
+                }
+            }
 
-    // if (action.type === "CART_REMOVE_FROM_CART") {
-    //     state = {
-    //         ...state,
-    //         cart: state.cart.filter(item => item.id !== action.payload.id)
-    //     }
-    //     return state
-    // }
-}
+
+        default:
+            return state;  // very important: return current state by default
+    }
+};

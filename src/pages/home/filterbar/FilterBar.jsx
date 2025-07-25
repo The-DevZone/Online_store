@@ -17,12 +17,7 @@ const FilterBar = () => {
   }
 
   const handleOrder = () => {
-    const cardShort = Math.floor(filters.price)
-    // console.log(cardShort)
-    const newShort = [...cardShort].sort((item1, item2) => item1.price - item2.price)
-    // console.log(newShort)
-    // setFilters(prev => ({}))
-    setFilters(prev => ({ ...prev, price: newShort }));
+    
   }
 
   return (

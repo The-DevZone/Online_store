@@ -25,6 +25,7 @@ const CartContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, {
     products,
     cart: [],
+    quantities: {},
   });
 
   return (
